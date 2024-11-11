@@ -33,19 +33,18 @@ dup_bdays = function(samp_size) {
 
 ## Run Simulations from sample size 2 to 50
 ```{r}
-prob_dup_by_samp_size <- 
-  tibble(
-    sample_size = 2:50
-  )
 
-prob_dup_by_samp_size
+prob_by_size <- c()
 
 for (sample_size in 2:50){
-  
+  num_dups = 0
   for (iteration in 1:10000) {
-    dup_bdays(sample_size)
+    if (dup_bdays(sample_size))
+      num_dups = num_dups + 1
   }
   
+  avg_prob = num_dups / 10,000
+  prob_dup_by_samp_size[[]]
 }
 
 
