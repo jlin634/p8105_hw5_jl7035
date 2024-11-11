@@ -18,8 +18,8 @@ library(tidyverse)
 
 ```{r}
 dup_bdays = function(samp_size) {
-  bday_vec <- runif(samp_size, min = 1, max = 365)
-  
+  bday_vec <- sample(c(1:365), size = samp_size, replace = TRUE)
+
   if (n_distinct(bday_vec) < samp_size) {
     return(TRUE)
   } else {
@@ -28,11 +28,6 @@ dup_bdays = function(samp_size) {
   
 }
 
-
-```
-
-```{r}
-dup_bdays(366)
 
 ```
 
@@ -52,6 +47,8 @@ for (sample_size in 2:50){
   
   prob_by_size = append(prob_by_size, values = avg_prob)
 }
+
+
 
 
 ```
