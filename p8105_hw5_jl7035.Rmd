@@ -13,3 +13,20 @@ library(tidyverse)
 
 
 # Problem 1
+
+## Function for Randomly Drawing Birthdays
+
+```{r}
+rand_bdays = function(samp_size) {
+  bday_vec <- runif(samp_size, min = 1, max = 365)
+  
+  if (samp_size == n_distinct(bday_vec)) {
+    return(TRUE)
+  } else {
+    return(FALSE)
+  }
+  
+}
+
+```
+
