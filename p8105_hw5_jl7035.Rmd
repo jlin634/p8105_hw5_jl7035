@@ -14,7 +14,7 @@ library(tidyverse)
 
 # Problem 1
 
-## Function for Randomly Drawing Birthdays
+## Functions for Randomly Drawing Birthdays and calculating prob of duplicates
 
 ```{r}
 dup_bdays = function(samp_size) {
@@ -28,11 +28,17 @@ dup_bdays = function(samp_size) {
   
 }
 
+
 ```
 
 ## Run Simulations from sample size 2 to 50
 ```{r}
+prob_dup_by_samp_size <- 
+  tibble(
+    sample_size = 2:50
+  )
 
+prob_dup_by_samp_size
 
 for (sample_size in 2:50){
   
