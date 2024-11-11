@@ -1,0 +1,15 @@
+---
+title: "p8105_hw5_jl7035"
+author: "Jeffrey Lin"
+date: "2024-11-11"
+output: github_document
+---
+
+# Load Libraries
+```{r}
+library(tidyverse)
+
+```
+
+
+# Problem 1
