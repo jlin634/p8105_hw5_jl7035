@@ -68,5 +68,7 @@ dup_bday_tbl %>%
 
 
 ```
-
+As the sample size increases, the probability of duplicate birthdays increases.
+The probability of having duplicate birthdays grows above 0.50 around a sample
+size of 23. 
 
