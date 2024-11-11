@@ -57,3 +57,16 @@ dup_bday_tbl <-
 ```
 
 
+## Plot of probability of duplicate birthdays by sample size
+```{r}
+dup_bday_tbl %>% 
+  ggplot(aes(x = sample_size, y = avg_prob)) +
+  geom_point() +
+  xlab("Sample Size") +
+  ylab("Probability of Duplicate Birthdays") +
+  ggtitle("Probability of Duplicate Birthdays by Sample Size")
+
+
+```
+
+
