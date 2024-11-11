@@ -17,7 +17,7 @@ library(tidyverse)
 ## Function for Randomly Drawing Birthdays
 
 ```{r}
-rand_bdays = function(samp_size) {
+dup_bdays = function(samp_size) {
   bday_vec <- runif(samp_size, min = 1, max = 365)
   
   if (samp_size == n_distinct(bday_vec)) {
@@ -28,5 +28,9 @@ rand_bdays = function(samp_size) {
   
 }
 
+```
+
+```{r}
+rand_bdays(5)
 ```
 
