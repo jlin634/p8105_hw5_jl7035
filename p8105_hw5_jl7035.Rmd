@@ -48,8 +48,11 @@ for (sample_size in 2:50){
   prob_by_size = append(prob_by_size, values = avg_prob)
 }
 
-
-
+dup_bday_tbl <-
+  tibble(
+    sample_size = 2:50,
+    avg_prob = prob_by_size
+  )
 
 ```
 
