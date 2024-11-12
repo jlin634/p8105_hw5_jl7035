@@ -81,5 +81,13 @@ n <- 30
 sigma <- 5
 mu <- 0
 
+x_bar_vec <- c()
+p_val_vec <- c()
+
+for (iter in 1:5000) {
+  
+  
+}
+
 ```
 
