@@ -72,3 +72,14 @@ As the sample size increases, the probability of duplicate birthdays increases.
 The probability of having duplicate birthdays grows above 0.50 around a sample
 size of 23. 
 
+# Problem 2
+
+
+## Generate 5000 datasets for mu = 0 and save p-values
+```{r}
+n <- 30
+sigma <- 5
+mu <- 0
+
+```
+
