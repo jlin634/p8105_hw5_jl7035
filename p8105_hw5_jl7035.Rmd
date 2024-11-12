@@ -98,6 +98,12 @@ for (iter in 1:5000) {
   
 }
 
+t_test_results <- tibble(
+  samp_avg <- x_bar_vec,
+  p_val <- p_val_vec
+)
+
+
 ```
 
 
