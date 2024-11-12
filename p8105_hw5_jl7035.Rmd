@@ -79,15 +79,29 @@ size of 23.
 ```{r}
 n <- 30
 sigma <- 5
-mu <- 0
+pop_param <- 0
 
 x_bar_vec <- c()
 p_val_vec <- c()
 
 for (iter in 1:5000) {
+  rand_samp <- rnorm(n, mu, sigma)
+  x_bar <- mean(rand_samp)
+  append(x_bar_vec, x_bar)
+  
+  p_val <- t.test(rand_samp, mu = pop_param)
   
   
 }
 
+```
+
+
+```{r}
+
+
+t.test(c(3, 4, 5, 2), mu = 0) %>% 
+  broom::tidy() %>% 
+  pull(p.value)
 ```
 
