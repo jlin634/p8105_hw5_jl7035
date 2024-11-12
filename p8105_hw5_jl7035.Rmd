@@ -107,7 +107,30 @@ t_test_results <- tibble(
 ```
 
 
+# Write Function that handles generating datasets and finding p-values for mu
 ```{r}
+gen_test_data <- function(pop_param_vec, n, sigma ) {
+  for (val in pop_param_vec) {
+    pop_param_df <- tibble(
+      samp_avg = numeric(),
+      p_val = numeric()
+    )
+    for (iter in 1:5000) {
+      rand_samp <- rnorm(n, pop_param, sigma)
+      x_bar <- mean(rand_samp)
+
+      p_val <- 
+      t.test(rand_samp, mu = pop_param, conf.level = 0.95) %>%
+      broom::tidy() %>% 
+      pull(p.value)
+      
+      pop_param_df <- bind_rows(pop_param_df, tibble(x_bar, p_val))
+    
+    t_test_results <- bind_rows(t_test_results, pop_param_df)
+    }
+  }
+}
+
 
 ```
 
