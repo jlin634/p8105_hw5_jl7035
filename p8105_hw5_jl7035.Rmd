@@ -194,6 +194,19 @@ url <-
   "https://raw.githubusercontent.com/washingtonpost/data-homicides/master/homicide-data.csv"
 homocide_df <- read_csv(url)
 
+```
+
+## Examine Raw Data
+
+```{r}
+head(homocide_df)
 
 ```
+
+The homocide statistics df includes `r ncol(homocide_df)` columns and 
+`r nrow(homocide_df)` observations. The important variables included in this 
+dataset are the first and last names of the victim, the sex of the victim, the 
+date of which the crime occurred, the location (city, state, lat, lon), and 
+the outcome of the investigation. 
+
 
