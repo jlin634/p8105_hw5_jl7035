@@ -142,6 +142,7 @@ t_test_results <- t_test_results %>%
 
 
 ```
+
 ## Proportion of Times Null was rejected in relation to true mean
 ```{r}
 t_test_results %>% 
@@ -154,4 +155,7 @@ t_test_results %>%
 
 
 ```
-
+Since we are conducting a t-test, where the supposed population mean is 0, 
+we can see that as the actual value of mu increases, the proportion of 
+null hypotheses rejected also increases. This suggests that as effect size 
+increases, power increases. 
