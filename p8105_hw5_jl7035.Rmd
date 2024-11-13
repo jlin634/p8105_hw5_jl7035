@@ -184,3 +184,16 @@ likelihood of rejecting the null hypothesis. For example, since our
 t-tests are being conducted with mu = 0, for the null hypothesis to be rejected 
 when the true mean is 1 or 2 and the standard deviation being rather large,
 we would need more extreme sample mean estimates. 
+
+
+# Problem 3
+
+## Load in the Data 
+```{r}
+url <- 
+  "https://raw.githubusercontent.com/washingtonpost/data-homicides/master/homicide-data.csv"
+homocide_df <- read_csv(url)
+
+
+```
+
