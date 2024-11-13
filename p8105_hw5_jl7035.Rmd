@@ -144,18 +144,14 @@ t_test_results <- t_test_results %>%
 ```
 ## Proportion of Times Null was rejected in relation to true mean
 ```{r}
-pwr_df %>% 
-  unnest() %>% 
+t_test_results %>% 
   filter(p_val < 0.05) %>% 
-  ggplot(aes(x = factor(pop_mean), color = pop_mean)) +
-  geom_bar()
+  ggplot(aes(x = factor(mu), fill = mu)) +
+  geom_bar() +
+  xlab("Number of t-tests with Null Rejected") +
+  ylab("Total t-tests conducted") +
+  ggtitle("Proportion of Null HYpohtesis Rejections by Population Mean")
 
-
-pwr_df %>% 
-  unnest(random_samples) %>% 
-  group_by(pop_mean) %>% 
-  filter(p_val < 0.05) %>% 
-  count()
 
 ```
 
