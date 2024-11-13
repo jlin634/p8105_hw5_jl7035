@@ -176,4 +176,11 @@ t_test_results %>%
   geom_point(data = null_rejected, color = "red")
 
 ```
-
+Looking at the average estimate of the mean in null hypothesis rejected cases 
+only, we see that estimates are not similar to the true means for mu = 1 and 2,
+but become increasingly good approximations of the true mean as mu approaches 
+6. This is likely the case, as the increasing effect size will increase 
+likelihood of rejecting the null hypothesis. For example, since our 
+t-tests are being conducted with mu = 0, for the null hypothesis to be rejected 
+when the true mean is 1 or 2 and the standard deviation being rather large,
+we would need more extreme sample mean estimates. 
