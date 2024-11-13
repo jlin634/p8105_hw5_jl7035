@@ -106,7 +106,7 @@ t_test_results <- tibble(
 
 # Write Function that handles generating datasets and finding p-values for mu
 ```{r}
-gen_test_data <- function(pop_param_vec, n, sigma) {
+gen_test_data <- function(pop_param_vec, n, sigma, results) {
   x_bar_vec <- numeric()
   p_val_vec <- numeric()
   for (val in pop_param_vec) {
@@ -124,20 +124,39 @@ gen_test_data <- function(pop_param_vec, n, sigma) {
       
     }
   }
-  t_test_results <- bind_rows(t_test_results, tibble(x_bar_vec, p_val_vec))
+  results <- bind_rows(results, tibble(samp_avg = x_bar_vec, p_val = p_val_vec))
+  return(results)
 }
 
 ```
 
 ## Generate datasets and perform t-tests for mu values 1 to 5
 ```{r}
-mu_vec <- c(1, 2, 3, 4, 5)
-gen_test_data(mu_vec, n, sigma)
+mu_vec <- c(1, 2, 3, 4, 5, 6)
+t_test_results <- gen_test_data(mu_vec, n, sigma, t_test_results)
 
 pwr_df <- tibble(
     pop_mean = c(0, 1, 2, 4, 5, 6),
     random_samples = list(t_test_results)
   )
+head(pwr)
+
+
+```
+## Proportion of Times Null was rejected in relation to true mean
+```{r}
+pwr_df %>% 
+  unnest() %>% 
+  filter(p_val < 0.05) %>% 
+  ggplot(aes(x = factor(pop_mean), color = pop_mean)) +
+  geom_bar()
+
+
+pwr_df %>% 
+  unnest(random_samples) %>% 
+  group_by(pop_mean) %>% 
+  filter(p_val < 0.05) %>% 
+  count()
 
 ```
 
