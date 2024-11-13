@@ -110,7 +110,6 @@ gen_test_data <- function(pop_param_vec, n, sigma, results) {
   x_bar_vec <- numeric()
   p_val_vec <- numeric()
   for (val in pop_param_vec) {
-    print(val)
     for (iter in 1:5000) {
       rand_samp <- rnorm(n, val, sigma)
       x_bar <- mean(rand_samp)
@@ -124,7 +123,8 @@ gen_test_data <- function(pop_param_vec, n, sigma, results) {
       
     }
   }
-  results <- bind_rows(results, tibble(samp_avg = x_bar_vec, p_val = p_val_vec))
+  results <- 
+    bind_rows(results, tibble(samp_avg = x_bar_vec, p_val = p_val_vec))
   return(results)
 }
 
@@ -135,11 +135,10 @@ gen_test_data <- function(pop_param_vec, n, sigma, results) {
 mu_vec <- c(1, 2, 3, 4, 5, 6)
 t_test_results <- gen_test_data(mu_vec, n, sigma, t_test_results)
 
-pwr_df <- tibble(
-    pop_mean = c(0, 1, 2, 4, 5, 6),
-    random_samples = list(t_test_results)
+t_test_results <- t_test_results %>% 
+  mutate(
+    mu = ((row_number() -1) %/% 5000)
   )
-head(pwr)
 
 
 ```
