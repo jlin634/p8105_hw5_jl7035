@@ -213,11 +213,18 @@ the outcome of the investigation.
 ```{r}
 homocide_df <- homocide_df %>% 
   mutate(
+    state = 
+      case_when(
+      state == "AL" & city == "Tulsa" ~ "OK",
+      .default = state
+    ), 
     city_state = str_c(city, ", ", state)
   ) 
 
-homocide_df %>% 
-  group_by(city) %>% 
+
+
+total_and_unsolved <- homocide_df %>% 
+  group_by(city_state) %>% 
   summarize(
     total_homocides = n(),
     unsolved_homocides = sum(disposition %in% 
