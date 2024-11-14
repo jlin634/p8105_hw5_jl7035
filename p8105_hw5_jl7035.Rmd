@@ -251,14 +251,14 @@ bal_prop_test <-
 ## Function for Calculating Prop Estimate
 ```{r}
 prop_estimate = function(unsolved, total) {
-  estimate <- prop.test(unsolved, total) %>% 
+  print(unsolved)
+  prop_est <- prop.test(unsolved, total) %>% 
   broom::tidy() %>% 
   select(estimate, conf.low, conf.high)
   
-  return(estimate)
+  return(prop_est)
   
 }
-
 
 ```
 
@@ -269,7 +269,7 @@ total_and_unsolved <- total_and_unsolved %>%
     prop_estimate = map2(
       pull(total_and_unsolved, unsolved),
       pull(total_and_unsolved, total),
-      prop_estimate(unsolved, total))
+      \(x, y) prop_estimate(unsolved = x,total = y))
   )
 
 
