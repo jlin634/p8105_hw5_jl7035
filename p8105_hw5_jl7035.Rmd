@@ -248,3 +248,17 @@ bal_prop_test <-
 ```
 
 
+## Function for Calculating Prop Estimate
+```{r}
+prop_estimate = function(total, unsolved) {
+  estimate <- prop.test(unsolved, total) %>% 
+  broom::tidy() %>% 
+  select(estimate, conf.low, conf.high)
+  
+  return(estimate)
+  
+}
+
+```
+
+
