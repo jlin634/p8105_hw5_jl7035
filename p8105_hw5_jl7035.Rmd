@@ -221,8 +221,6 @@ homocide_df <- homocide_df %>%
     city_state = str_c(city, ", ", state)
   ) 
 
-
-
 total_and_unsolved <- homocide_df %>% 
   group_by(city_state) %>% 
   summarize(
@@ -244,13 +242,12 @@ bal_prop_test <-
   broom::tidy() %>% 
   select(estimate, conf.low, conf.high)
 
-
 ```
 
 
 ## Function for Calculating Prop Estimate
 ```{r}
-prop_estimate = function(unsolved, total) {
+estimate_prop = function(unsolved, total) {
   prop_est <- prop.test(unsolved, total) %>% 
   broom::tidy() %>% 
   select(estimate, conf.low, conf.high)
@@ -268,7 +265,24 @@ total_and_unsolved <- total_and_unsolved %>%
     prop_estimate = map2(
       pull(total_and_unsolved, unsolved),
       pull(total_and_unsolved, total),
-      \(x, y) prop_estimate(unsolved = x,total = y))
+      \(x, y) estimate_prop(unsolved = x,total = y))
+  )
+
+```
+
+## Plot proportion of unsolved homocides by city
+```{r}
+total_and_unsolved %>% 
+  unnest(prop_estimate) %>%
+  ggplot(aes(x = fct_reorder(city_state, estimate), y = estimate)) +
+  geom_point() +
+  xlab("City") +
+  ylab("Proportion of Unsolved Homicides") +
+  ggtitle("Proportion of Unsolved Homicides by City") +
+  geom_errorbar(aes(ymin = conf.low, ymax = conf.high), width = 0.2) +
+  theme(
+    plot.title = element_text(hjust = 0.5),
+    axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1, size = 8)
   )
 
 ```
