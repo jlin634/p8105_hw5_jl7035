@@ -159,7 +159,7 @@ we can see that as the actual value of mu increases, the proportion of
 null hypotheses rejected also increases. This suggests that as effect size 
 increases, power increases. 
 
-Plot Average Sample Mean vs True Population Mean
+## Plot Average Sample Mean vs True Population Mean
 
 ```{r}
 null_rejected <- t_test_results %>% 
@@ -237,7 +237,9 @@ bal_stats <- total_and_unsolved %>%
   filter(city_state == "Baltimore, MD")
 
 bal_prop_test <- 
-  prop.test(pull(bal_stats, unsolved), pull(bal_stats, total)) %>% 
+  prop.test(pull(bal_stats, unsolved), pull(bal_stats, total))
+
+bal_prop_test %>% 
   broom::tidy() %>% 
   select(estimate, conf.low, conf.high)
 
