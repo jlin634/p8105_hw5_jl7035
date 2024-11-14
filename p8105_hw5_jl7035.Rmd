@@ -226,13 +226,25 @@ homocide_df <- homocide_df %>%
 total_and_unsolved <- homocide_df %>% 
   group_by(city_state) %>% 
   summarize(
-    total_homocides = n(),
-    unsolved_homocides = sum(disposition %in% 
+    total = n(),
+    unsolved = sum(disposition %in% 
       c("Closed witihout arrest", "Open/No arrest"))
   )
 
 
 ```
 
+## Proportion of Unsolved Homocides in Baltimore
+```{r}
+bal_stats <- total_and_unsolved %>% 
+  filter(city_state == "Baltimore, MD")
+
+bal_prop_test <- 
+  prop.test(pull(bal_stats, unsolved), pull(bal_stats, total)) %>% 
+  broom::tidy() %>% 
+  select(estimate, conf.low, conf.high)
+
+
+```
 
 
