@@ -250,7 +250,7 @@ bal_prop_test <-
 
 ## Function for Calculating Prop Estimate
 ```{r}
-prop_estimate = function(total, unsolved) {
+prop_estimate = function(unsolved, total) {
   estimate <- prop.test(unsolved, total) %>% 
   broom::tidy() %>% 
   select(estimate, conf.low, conf.high)
@@ -259,6 +259,19 @@ prop_estimate = function(total, unsolved) {
   
 }
 
+
 ```
 
+## Calculate prop of unsolved homocides for all cities
+```{r}
+total_and_unsolved <- total_and_unsolved %>% 
+  mutate(
+    prop_estimate = map2(
+      pull(total_and_unsolved, unsolved),
+      pull(total_and_unsolved, total),
+      prop_estimate(unsolved, total))
+  )
+
+
+```
 
