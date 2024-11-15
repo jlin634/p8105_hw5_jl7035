@@ -99,7 +99,6 @@ t_test_results <- tibble(
   p_val = p_val_vec
 )
 
-
 ```
 
 
@@ -145,13 +144,13 @@ t_test_results <- t_test_results %>%
 ## Proportion of Times Null was rejected in relation to true mean
 ```{r}
 t_test_results %>% 
-  filter(p_val < 0.05) %>% 
-  ggplot(aes(x = factor(mu), fill = mu)) +
-  geom_bar() +
-  xlab("Number of t-tests with Null Rejected") +
-  ylab("Total t-tests conducted") +
-  ggtitle("Proportion of Null HYpohtesis Rejections by Population Mean")
-
+  group_by(mu) %>% 
+  summarize(Prop_Reject = sum(p_val <  0.05) /5000) %>% 
+  ggplot(aes(x = factor(mu), y = Prop_Reject)) +
+  geom_point() +
+  xlab("Mu value") +
+  ylab("Proportion of Null Hypotheses Rejected") +
+  ggtitle("Proportion of Null Hypothesis Rejections by Population Mean")
 
 ```
 Since we are conducting a t-test, where the supposed population mean is 0, 
@@ -199,7 +198,6 @@ homocide_df <- read_csv(url)
 
 ```{r}
 head(homocide_df)
-
 ```
 
 The homocide statistics df includes `r ncol(homocide_df)` columns and 
@@ -227,8 +225,6 @@ total_and_unsolved <- homocide_df %>%
     unsolved = sum(disposition %in% 
       c("Closed witihout arrest", "Open/No arrest"))
   )
-
-
 ```
 
 ## Proportion of Unsolved Homocides in Baltimore
